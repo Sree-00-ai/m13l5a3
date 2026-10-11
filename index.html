@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Arrays</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f4ff;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 550px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px gray;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: royalblue;
+        }
+
+        #result {
+            background-color: #f0f8ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>JavaScript Arrays</h1>
+
+        <p id="arrayDisplay"></p>
+
+        <input type="text" id="item"
+               placeholder="Enter a student name">
+
+        <br>
+
+        <button onclick="addItem()">Add Name</button>
+        <button onclick="removeItem()">Remove Last</button>
+        <button onclick="sortArray()">Sort Names</button>
+        <button onclick="reverseArray()">Reverse Names</button>
+        <button onclick="showFirst()">Show First</button>
+        <button onclick="showLoop()">Loop Through Array</button>
+        <button onclick="updateItem()">Update First</button>
+
+        <div id="result">Click a button to explore arrays.</div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Creating an array
+        let students = ["Ravi", "Priya", "Arun"];
+
+        // Display the array
+        function displayArray() {
+            document.getElementById("arrayDisplay").textContent =
+                "Students: " + students.join(", ");
+        }
+
+        // Add an element using push()
+        function addItem() {
+            let name = document.getElementById("item").value.trim();
+
+            if (name === "") {
+                document.getElementById("result").textContent =
+                    "Please enter a student name!";
+                return;
+            }
+
+            students.push(name);
+
+            document.getElementById("item").value = "";
+
+            displayArray();
+
+            document.getElementById("result").textContent =
+                name + " was added to the array.";
+        }
+
+        // Remove the last element using pop()
+        function removeItem() {
+            if (students.length === 0) {
+                document.getElementById("result").textContent =
+                    "The array is empty!";
+                return;
+            }
+
+            let removed = students.pop();
+
+            displayArray();
+
+            document.getElementById("result").textContent =
+                removed + " was removed.";
+        }
+
+        // Sort the array
+        function sortArray() {
+            students.sort();
+
+            displayArray();
+
+            document.getElementById("result").textContent =
+                "Names sorted alphabetically.";
+        }
+
+        // Reverse the array
+        function reverseArray() {
+            students.reverse();
+
+            displayArray();
+
+            document.getElementById("result").textContent =
+                "The array order was reversed.";
+        }
+
+        // Access the first element
+        function showFirst() {
+            if (students.length === 0) {
+                document.getElementById("result").textContent =
+                    "The array is empty!";
+                return;
+            }
+
+            document.getElementById("result").textContent =
+                "First student: " + students[0];
+        }
+
+        // Loop through the array
+        function showLoop() {
+            if (students.length === 0) {
+                document.getElementById("result").textContent =
+                    "The array is empty!";
+                return;
+            }
+
+            let output = "";
+
+            for (let i = 0; i < students.length; i++) {
+                output += i + ": " + students[i] + "\n";
+            }
+
+            document.getElementById("result").textContent = output;
+        }
+
+        // Update the first element
+        function updateItem() {
+            let name = document.getElementById("item").value.trim();
+
+            if (name === "") {
+                document.getElementById("result").textContent =
+                    "Enter a name to update the first student.";
+                return;
+            }
+
+            if (students.length === 0) {
+                document.getElementById("result").textContent =
+                    "Add a student before updating!";
+                return;
+            }
+
+            students[0] = name;
+
+            document.getElementById("item").value = "";
+
+            displayArray();
+
+            document.getElementById("result").textContent =
+                "The first student was updated to " + name + ".";
+        }
+
+        // Initial display
+        displayArray();
+    </script>
+
+</body>
+</html>
